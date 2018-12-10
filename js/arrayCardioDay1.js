@@ -24,17 +24,48 @@ const inventors = [
   'Blair, Robert', 'Blair, Tony', 'Blake, William'];
   
 
-// filter - doesn't affect the pp arr, returns the length of its params;
+// F I L T E R - doesn't affect the pp arr, returns the length of its params;
+
 const namesBiggerThan70 = [];
 
 const yearsBiggerThan70 = inventors.filter(function(inventor){
-    
     if (inventor.year > 1870 && inventor.year < 1900) {
         namesBiggerThan70.push(inventor.first);
         return inventor;
-    }
+    } 
     
 });
 
-console.log(namesBiggerThan70);
-console.log(yearsBiggerThan70);
+// console.log(namesBiggerThan70);
+// console.log(yearsBiggerThan70);
+
+
+
+// M A P - will allways return the same ammount of length (like the initial arr);   // forEach - doesn't work for objects
+
+const inventorsNames = inventors.map(function(name){
+    return ` ${name.first} ${name.last}`;
+});
+
+
+// console.log(inventorsNames); ech element in arr - directly  === ITERATE OVER PROPERTY VALUES - a list of values; 
+// it returns directly inventors[i] = inventor;
+// https://www.typescriptlang.org/docs/handbook/iterators-and-generators.html 
+
+
+// FOR IN FOR OFF
+for (let inventor of inventors) {
+    // console.log(inventor.first);
+}
+
+
+// returns the indexes - returns a list of keys;
+for (let i in inventors) {
+    // console.log(`${i} : ${inventors[i].first}`); 
+}
+
+
+// S O R T
+const ordered = inventors.sort( (a, b) => a - b )
+
+console.table(ordered);
