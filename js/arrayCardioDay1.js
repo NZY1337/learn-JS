@@ -14,7 +14,7 @@ const inventors = [
   ];
 
   
-  const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 
+const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 
   'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 
   'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 
   'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 
@@ -22,8 +22,8 @@ const inventors = [
   'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 
   'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 
   'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 
-  'Blair, Robert', 'Blair, Tony', 'Blake, William'];
- 
+  'Blair, Robert', 'Blair, Tony', 'Blake, William'
+];
 
 // F I L T E R - doesn't affect the pp arr, returns the length of its params;
 
@@ -31,14 +31,12 @@ const namesBiggerThan70 = [];
 
 const yearsBiggerThan70 = inventors.filter(function(inventor){
     if (inventor.year > 1870 && inventor.year < 1900) {
-        namesBiggerThan70.push(inventor.first);
-        return inventor;
+        return  namesBiggerThan70.push(inventor.first);
     } 
 });
 
 // console.log(namesBiggerThan70);
 // console.log(yearsBiggerThan70);
-
 
 
 // M A P - will allways return the same ammount of length (like the initial arr);   // forEach - doesn't work for objects
@@ -85,7 +83,7 @@ arrAlphaNames.sort((a, b) => a > b ? 1 : -1 );
 
 function yearLived() {
     return inventors.map(function(inventor){
-        return `${inventor.first} has lived : ${inventor.passed - inventor.year}`;
+        return `${inventor.first} lived : ${inventor.passed - inventor.year}`;
     }); 
 }   
 
@@ -271,7 +269,7 @@ const newComments = [
     ...comments.slice(indexComm + 1)
   ];
 
-console.log(newComments);
+// console.log(newComments);
 
 
 
