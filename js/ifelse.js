@@ -2,11 +2,13 @@
 
 // yourName
 // yourName - ternary operator (?)
+/*
 let name = document.getElementById('yourName');
 let first = true;
 let result = "";
 let output = first ? result = 'Andrei' : result = 'George';
 name.innerHTML = output;
+*/
 
 /*
 yourAge - ternary operator (?)
@@ -30,6 +32,7 @@ if  (yourGender === ""){
     gender.innerHTML = 'you do not want to wear a skirt';
 }
 */
+
 
 // yourGender - ternary operator (?)
 /*
@@ -66,7 +69,7 @@ switch (yourGender) {
 
 
 // yourGender - switch statement - without var wearSkyrt;
-
+/*
 let gender = document.getElementById('gender'); // this will hold the answer in the end
 let yourGender = prompt('What is your gender?');
 
@@ -84,8 +87,14 @@ switch (yourGender) {
     default: 
     gender.innerHTML = 'you are an animal';
 };
+*/
 
-
-
-
+// array name Exercise
+/*
+let getName = document.getElementById('nameArr');
+let nameArr = ['Andrew', 'Thomas', 'Thorin', 'Frank', 'Gilbert'];
+let whichName = prompt('Is your name in the array?');
+let isInArr = nameArr.indexOf(whichName) > -1 ? 'yes it is' : 'no its not';
+getName.innerHTML = isInArr;
+*/
 
