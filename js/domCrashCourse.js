@@ -8,7 +8,7 @@ let val = document.getElementById('value').innerText
 let putIn = document.getElementById('inp');
 putIn.value = val + (' (done)');
 
-// change name dinamicaly via PROMPT
-let userName = prompt('What is your name?');
-let welcome = document.getElementById('welcome');
-welcome.innerText = 'Hello ' + userName;
+// // change name dinamicaly via PROMPT
+// let userName = prompt('What is your name?');
+// let welcome = document.getElementById('welcome');
+// welcome.innerText = 'Hello ' + userName;
