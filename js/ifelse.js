@@ -249,36 +249,26 @@ _8ball.innerHTML = 'You asked me: ' + '<br>' + askMe + '<br><br>' + ' And my res
 const rpcResult = document.getElementById('rpc');
 
 let vars = ['Rocket', 'Paper', 'Scissor'];
-let playerPos = Math.floor(Math.random() * 3);
+let askWhat = prompt('Rocket/Paper/Scissor');
+let player = askWhat.charAt(0).toLowerCase();
+
 let computerPos = Math.floor(Math.random() * 3);
-
-let player = vars[playerPos].charAt(0).toLowerCase();
 let computer = vars[computerPos].charAt(0).toLowerCase();
-
 
 if (player === computer) {
     rpcResult.innerHTML = 'its a tie';
-    
 } else if (player === 'r') {
-    if (computer === 'p') {
-        rpcResult.innerHTML = 'Player Wins'; 
-    } else if (computer === 's') {
-        rpcResult.innerHTML = 'Player Wins';
-    }
+    rpcResult.innerHTML = 'Player wins'; // Player Wins nomatter what Computer chooses
+} else if (computer === 'r') {
+    rpcResult.innerHTML = 'Computer Wins'; // Computer Wins nomatter what Player chooses
 } else if (player === 's') {
     if (computer === 'p') {
         rpcResult.innerHTML = 'Player Wins';
     } else if (computer === 'r') {
         rpcResult.innerHTML = 'Computer Wins';
     }
-} else if (player === 'p') {
-    if (computer === 's') {
-        rpcResult.innerHTML = 'Computer Wins';
-    } else if (computer = 'r') {
-        rpcResult.innerHTML = 'Computer Wins';
-    }
-}
+}    
 
 console.log('player choice: ' + player);
-console.log('computer choice: ' + comput    er);
+console.log('computer choice: ' + computer);
 
