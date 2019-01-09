@@ -98,6 +98,7 @@ let isInArr = nameArr.indexOf(whichName) > -1 ? 'yes it is' : 'no its not';
 getName.innerHTML = isInArr;
 */
 
+/*
 let insert = document.getElementById('response');
 let names = ['Johny', 'Brody', 'Michel', 'Augustin', 'Andra'];
 let insertName = prompt('What is your name');
@@ -109,7 +110,8 @@ if (names.indexOf(insertName) > -1) {
     let age = prompt('Tell us your age?');
 		response = insertName + ' your name is in array';
    
-    /* response += age >= 18 ? ' and you are an adult' : ' and you are not an adult'; */
+    // response += age >= 18 ? ' and you are an adult' : ' and you are not an adult'; 
+
     if (age >= 18) {
     		response += ' and you are an adult';
         alert('good');
@@ -125,11 +127,13 @@ if (names.indexOf(insertName) > -1) {
 }
 insert.innerHTML = response;
 
+*/
 
+/* 
 let time = document.getElementById('time');
 let hour = 14;
 
-/* 
+
 if (hour > 6 && hour < 7) {
     time.innerText = 'It\'s time to get up';
 } else if (hour === 10) {
@@ -147,6 +151,8 @@ if (hour > 6 && hour < 7) {
 
 // multiple cases in switch statement
 // we test hour variable
+
+/*
 switch (Number(hour)) {
 		case 14:
     time.innerText = 'Enjoy your day';
@@ -163,9 +169,10 @@ switch (Number(hour)) {
     default:
     time.innerText = 'Time to have lunch';
 }
+*/
 
-
-// tiempo 
+// tiempo
+/* 
 let tiempo = document.getElementById('tiempo');
 let ora = prompt('What hour it is');
 let html = "";
@@ -195,11 +202,12 @@ switch (Number(ora)) {
 }
 
 tiempo.innerHTML = html;
-
+*/
 
 
 // Magic 8Ball
 
+/*
 const _8ball =  document.getElementById('8ball');
 let random = Math.floor(Math.random() * 6 + 1);
 let askMe = prompt('What do you want to know?');
@@ -232,5 +240,45 @@ switch(random) {
 }
 
 _8ball.innerHTML = 'You asked me: ' + '<br>' + askMe + '<br><br>' + ' And my response is: ' + '<br>' + ' ' + reply;
+*/
 
+
+
+// Rocket, Paper, Scrissor
+
+const rpcResult = document.getElementById('rpc');
+
+let vars = ['Rocket', 'Paper', 'Scissor'];
+let playerPos = Math.floor(Math.random() * 3);
+let computerPos = Math.floor(Math.random() * 3);
+
+let player = vars[playerPos].charAt(0).toLowerCase();
+let computer = vars[computerPos].charAt(0).toLowerCase();
+
+
+if (player === computer) {
+    rpcResult.innerHTML = 'its a tie';
+    
+} else if (player === 'r') {
+    if (computer === 'p') {
+        rpcResult.innerHTML = 'Player Wins'; 
+    } else if (computer === 's') {
+        rpcResult.innerHTML = 'Player Wins';
+    }
+} else if (player === 's') {
+    if (computer === 'p') {
+        rpcResult.innerHTML = 'Player Wins';
+    } else if (computer === 'r') {
+        rpcResult.innerHTML = 'Computer Wins';
+    }
+} else if (player === 'p') {
+    if (computer === 's') {
+        rpcResult.innerHTML = 'Computer Wins';
+    } else if (computer = 'r') {
+        rpcResult.innerHTML = 'Computer Wins';
+    }
+}
+
+console.log('player choice: ' + player);
+console.log('computer choice: ' + comput    er);
 
