@@ -243,26 +243,36 @@ _8ball.innerHTML = 'You asked me: ' + '<br>' + askMe + '<br><br>' + ' And my res
 */
 
 
-
 // Rocket, Paper, Scrissor
 
+/*
 const rpcResult = document.getElementById('rpc');
-
-let vars = ['Rocket', 'Paper', 'Scissor'];
-let askWhat = prompt('Rocket/Paper/Scissor');
+const vars = ['Rocket', 'Paper', 'Scissor'];
+let askWhat = prompt('choose Rocket or Paper or Scissor');
 let player = askWhat.charAt(0).toLowerCase();
 
 let computerPos = Math.floor(Math.random() * 3);
 let computer = vars[computerPos].charAt(0).toLowerCase();
 
-if (player === computer) {
+
+function negateCheck()  {
+    if (player != 'r' && player != 'p' && player != 's') {
+        alert('your choice doesn\'t match');
+    }
+    return;
+}
+
+negateCheck();
+
+
+if (player == computer) {
     rpcResult.innerHTML = 'its a tie';
-} else if (player === 'r') {
+} else if (player == 'r') {
     rpcResult.innerHTML = 'Player wins'; // Player Wins nomatter what Computer chooses
-} else if (computer === 'r') {
+} else if (computer == 'r') {
     rpcResult.innerHTML = 'Computer Wins'; // Computer Wins nomatter what Player chooses
-} else if (player === 's') {
-    if (computer === 'p') {
+} else if (player == 's') {
+    if (computer == 'p') {
         rpcResult.innerHTML = 'Player Wins';
     } else if (computer === 'r') {
         rpcResult.innerHTML = 'Computer Wins';
@@ -271,4 +281,54 @@ if (player === computer) {
 
 console.log('player choice: ' + player);
 console.log('computer choice: ' + computer);
+
+*/
+
+
+// Heads Or Tail Game
+
+const headTail = document.getElementById('tail_head');
+const chosed = document.getElementById('chosed');
+const showAnswer = document.getElementById('showAnswer');
+
+const question = prompt('Head Or Tail ?');
+let response = 'Computer Throw: ';
+let result = question == 'tail' ? 1 : 0;
+
+
+let randomChance = Math.floor(Math.random() * 2);
+let computerChoice;
+
+// 1 = head;
+// 0 = tail
+
+function check() {
+    if (result == randomChance) {
+        response += randomChance;
+        showAnswer.innerHTML = 'You won';
+    } else {
+        response += randomChance;
+        showAnswer.innerHTML ='You lost';
+    }
+
+    return response;
+}
+
+// adica in promt daca scriem head (head == 1) si randomChange = 1, raspunsul e corect
+
+headTail.innerHTML = check();
+chosed.innerHTML = 'You chose: ' + question;
+
+if (result == randomChance) {
+    showAnswer.innerHTML = 'You won';
+} else {
+    showAnswer.innerHTML = 'You lost';
+}
+
+console.log(randomChance);
+
+
+
+
+
 
