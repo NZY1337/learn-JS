@@ -287,48 +287,212 @@ console.log('computer choice: ' + computer);
 
 // Heads Or Tail Game
 
-const headTail = document.getElementById('tail_head');
-const chosed = document.getElementById('chosed');
-const showAnswer = document.getElementById('showAnswer');
+/*
+tailHeadGame = () => {
+    const player = document.getElementById('chosen');
+    const computer = document.getElementById('computer');
+    const finalAnswer = document.getElementById('gameRes');
+    const arrTailHead = ['tail', 'head'];
+    let random = Math.floor(Math.random() * 2);
+    let computerChoice = arrTailHead[random];
+    let game = prompt('Head Or Tail ?');
 
-const question = prompt('Head Or Tail ?');
-let response = 'Computer Throw: ';
-let result = question == 'tail' ? 1 : 0;
-
-
-let randomChance = Math.floor(Math.random() * 2);
-let computerChoice;
-
-// 1 = head;
-// 0 = tail
-
-function check() {
-    if (result == randomChance) {
-        response += randomChance;
-        showAnswer.innerHTML = 'You won';
-    } else {
-        response += randomChance;
-        showAnswer.innerHTML ='You lost';
+    let playerChoice = game == 'tail' ? arrTailHead[0] : arrTailHead[1];
+    if (game == "") {
+        alert("choose between 'head' or 'tail'");
     }
-
-    return response;
+    else if (playerChoice == computerChoice) {
+        player.innerHTML = 'Player chose: ' + game;
+        computer.innerHTML = 'computer chose: ' + computerChoice;
+        finalAnswer.innerHTML = 'MATCH'
+    } else {
+        player.innerHTML = 'Player chose: ' + game;
+        computer.innerHTML = 'computer chose: ' + computerChoice;
+        finalAnswer.innerHTML = 'DIFFERENT';
+    }
+    console.log('computer choice: ' + computerChoice);
 }
 
-// adica in promt daca scriem head (head == 1) si randomChange = 1, raspunsul e corect
+tailHeadGame();
 
-headTail.innerHTML = check();
-chosed.innerHTML = 'You chose: ' + question;
+*/
 
-if (result == randomChance) {
-    showAnswer.innerHTML = 'You won';
-} else {
-    showAnswer.innerHTML = 'You lost';
+// tail (player choice) == tail (comp choice) - ok
+// tail (player choice) == head (comp choice) - not ok
+
+// if playerChoice is not 'tail' - playerchoice = arrTailHead[1], but arrTailHead[1] can be equal with computerChoice
+// head (player choice) == head (comp choice) - ok
+// head (player choice) == tail (comp choice) - not ok
+
+
+// Crack the code game's logic
+
+let crack = {
+    arr1 : [6, 8, 2], // 1 correct, good placed
+    arr2 : [6, 1, 4], // 1 correct, wrong placed
+    arr3 : [2, 0, 6], // 2 correct, wrong placed
+    arr4 : [7, 3, 8], // nothing correct
+    arr5 : [7, 8 ,0] // 1 correct, wrong placed  
 }
 
-console.log(randomChance);
+let found = 0;
+let repeatedNumber = []; // it must be an array because we can have more than 1 repeated
+
+
+// A - eliminate first number
+
+function checkFirstTwoArr() {
+    for (let i = 0; i < crack.arr1.length; i++) {
+        for (let j = 0; j < crack.arr2.length;j++) {
+            if (crack.arr1[i] == crack.arr2[j]) {
+                found++;
+                // console.log('We found ' + found + ' repeated numbers');
+                repeatedNumber.push(crack.arr2[i]);
+            }
+        }
+    }
+    return repeatedNumber;
+}
+
+checkFirstTwoArr();
+
+// B - extract 6 from first two arrays because 6 can't exists in the both arrays 
+function removeRepeatedNumber() {
+   let rep = crack.arr2.filter(el => {
+       return repeatedNumber.indexOf(el) < 0;
+   });
+   return rep;
+}
+removeRepeatedNumber();
+
+
+// C - we can remove the first number from the object (6);
+function removeRepeat(repeat) {
+    let x;
+    for (let key in crack) {
+         x = crack[key].filter(function(f){
+            return !repeat.includes(f);
+        }); 
+        // args.push(x);
+        crack[key] = x;
+    }
+    return crack;
+}
+
+removeRepeat(repeatedNumber);
+
+
+// D - step 4 nothing correct;
+// from the new Object we can delete the fourth array, but first we need to eliminate the (7 and 8 from the entire object);
+
+let repeatedNumberFromStep4 = [7, 8];
+
+function removeRepeat(repeat) {
+    let x;
+    for (let key in crack) {
+         x = crack[key].filter(function(f){
+            return !repeat.includes(f);
+        }); 
+        // args.push(x);
+        crack[key] = x;
+    }
+    return crack;
+}
+
+removeRepeat(repeatedNumberFromStep4);
+
+// since we have removed 7 and 8 from the entire object, we can remove also 3 from the arr4 (from step 4);
+
+removeFourth = () => {
+    return delete crack['arr4'];
+}
+
+removeFourth();
+
+
+// E - now let's rebuild the object to see exactly what I have deleted so far
+
+rebuild = (obj) => {
+    // for arr 1 we have deleted first two numbers (6,8);
+    obj.arr1.unshift('_', '_');
+    obj.arr2.unshift('_');
+    obj.arr3.push('_');
+    obj.arr5.unshift('_', '_');
+    return obj;
+}
+
+rebuild(crack);
 
 
 
+/* let's build THE FINAL LOGIC
+    from step 1 and step 2 
+        - one number is correct and well placed, one number is correct and wrong placed
+            so 6 can't be correctly placed and wrong placed in the same time; we eliminate 6 from first two,
+            and also we eliminate 6 from step3, because 6 doesn't take place in the code
+
+    from step 4 - nothing is correct - we delete these numbers from the entire object
+
+    ["_", "_", 2]
+    ["_", 1, 4]
+    [2, 0, "_"]
+    ["_", "_", 0] 
+
+*/
+
+// *from step one - we find the first number for the 3rd position
+const thirdNumber = document.getElementById('nr3').innerText = crack.arr1[2];
+
+delete crack.arr1;
+
+/* now we have
+    ["_", 1, 4]
+    [2, 0, "_"]
+    ["_", "_", 0] 
+*/
+
+// from step 3 - two numbers are correct, but wrong placed [2, 0, "_"];
+
+swapTwo = () => {
+    crack.arr3[0] = 0;
+    crack.arr3[1] = 2;
+}
+
+swapTwo();
+
+/* new obj
+    arr2:  ["_", 1, 4]
+    arr3:  [0, 2, "_"]
+    arr5:  ["_", "_", 0]
+*/
+
+/* 
+    now for arr3  the correct order is [0, 2, "_"] - so both numbers are valid - but we also know that number 2 is the last 
+    one(as we saw up in the code), and 0 is the first one and it matches also the 5th rule (one is correct but bad placed);
+    - so 0 is the first one
+*/
+
+
+
+const firstNumber = document.getElementById('nr1').innerHTML = crack.arr3[0];
+delete crack.arr3, delete crack.arr5;
+
+/*  now we have arr2:  ["_", 1, 4] and it says : one is correct but wrong placed: What exactly does it mean ?
+    we look at the last array(arr2) - ["_", 1, 4] - one is correct but wrong placed - we know the numbers for the
+    first and the third positions of the code, and we need to know the number for the second pos
+
+    since the statement says one is correct but wrong placed, 1 can't fill in the code because its correctly placed,
+    so the number we are looking for is 4 (correct but wrong placed);
+
+    * final answer: 4;
+
+ */
+
+ const secondNumber = document.getElementById('nr2').innerHTML = crack.arr2[2];
+ delete crack.arr2;
+
+
+ console.log(crack); // empty object;
 
 
 
