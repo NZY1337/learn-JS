@@ -55,8 +55,6 @@ function outputHtml(a, b) {
     result.innerHTML = a + " = " + b + "<br>";
 }
 
-// reset function
-console.log(result.innerHTML);
 
 reset = () => {
     num1.value = "";
@@ -64,8 +62,49 @@ reset = () => {
     result.innerHTML = 'Result : ';
 }
 
+ 
 
+// CRACK THE CODE GAME
 
+var cCode = [];
+var count = 0;
+var crackOutput =  document.getElementById("crack_output");
+var c1 = document.getElementById("code1");
+var c2 = document.getElementById("code2");
+var c3 = document.getElementById("code3");
+
+for(let i=0; i<3; i++){
+    cCode.push(Math.floor(Math.random() * 9));
+}
+
+console.log(cCode);
+//crackOutput.innerHTML = cCode;
+
+function crackCode(){
+    count=0;
+    var guess = [c1.value,c2.value,c3.value];
+
+    for(let i =0; i < cCode.length; i++){
+        crackOutput.innerHTML += checkNum(guess[i],cCode[i]);
+    }
+     
+    if (count == 3){
+        crackOutput.innerHTML += " You Guessed it <br>";
+    } else{
+        crackOutput.innerHTML += "<br>";
+    }
+}
+
+function checkNum(a,b){
+    if(a>b){ return "L" ;}
+
+    if(a<b){ return "H" ;}
+
+    if(a==b){ 
+        count++;
+        return a;
+    }
+}
 
 
 
