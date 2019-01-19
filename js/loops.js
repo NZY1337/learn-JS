@@ -82,6 +82,7 @@ while (who != secret) {
     break;
 } 
 
+/*
 let banana = prompt('Whow many calories do you eat');
 let bananaCalroies = 89;
 let total = 0;
@@ -91,4 +92,95 @@ for (let fruit = 1; fruit <=  Number(banana); fruit++) {
     let banaaanas = fruit == 1 ? 'banana 1' : 'bananas';
     console.log('You ate ' + fruit + ` ${banaaanas} with ` + `${total} calories`);
 }
+*/
 
+
+// NESTED LOOPS - creating table
+
+const table = document.getElementById('table');
+let html = '<table>';
+
+for (var row = 0; row < 6; row++) {
+    html+= '<tr>';
+    for (var col = 0; col < 5; col++) {
+        html += "<td> Cell = " + ((col + 1) + (row*5)) + "</td>";
+    }
+    html += "</tr>";
+}
+html += "</table>";
+table.innerHTML = html;
+
+
+
+for (let z = 0; z < 3; z++) {
+    // console.log('z' + z);      
+
+    for (let x = 0; x < 3; x++) {
+        // console.log('- x' + x);
+    }
+}
+
+// 1 data de 3 ori, 2 dati de 3 ori, 3 dati de 3 ori
+/*
+    z0      z1       z2
+    - x0     - x0     - x0
+    - x1     - x1     - x1
+    - x2     - x2     - x2
+*/
+
+let names = ['Andrew', 'Stephan', 'Jane'];
+
+let pnt = 0;
+
+while (names[pnt]) {
+    // console.log(names[pnt]);
+    pnt++;
+}
+
+// looping through objects - we don't have length in objects    
+
+const userNames = {
+    a : 'Mike',
+    b : 'Joni',
+    c : 'Lary'
+}
+
+for (prop in userNames) {
+    // console.log(userNames[prop]);
+}
+
+
+// SHOPPING LIST BUILDER
+
+let shoppingList = [];
+let items = prompt('How many items do you want to add?');
+let myItem;
+
+for (let item = 0; item < items; item++) {
+    myItem = prompt('What do you want to buy from us?');
+    if (myItem != '') {
+        shoppingList.push(myItem);
+    } else {
+        break;
+        console.log('your shopping list finish here')
+    }
+}
+
+// output the shopping list;
+
+for (let item of shoppingList) {
+    console.log(item);
+}
+
+
+var output = document.getElementById("table");
+var teibal = "<table>";
+for (var row = 0; row < 5; row++) {
+    html += "<tr>";
+    for (var col = 0; col < 4; col++) {
+        teibal += "<td>Cell = " + ((col + 1) + (row * 4)) + "</td>";
+    }
+    teibal += "</tr>";
+}
+teibal += "</table>";
+output.innerHTML = teibal;
