@@ -76,14 +76,17 @@
     <div id="addition-section">
         <h1 class="text-center pb-3">Calculator</h1>
         <div class="addition text-center">
+            <h3 id="lastResult"></h3>
             First: <input type="text" id="add_num1">
             Second: <input type="text" id="add_num2">
             <br>
+           
             <input type="button" class="my-2" onClick="addition()" value="+">
             <input type="button" class="my-2" onClick="substraction()" value="-"> 
             <input type="button" class="my-2" onClick="multiplication()" value="*"> 
             <input type="button" class="my-2" onClick="division()" value=":"> 
-            <h3 id="additionResult" class="d-inline-block pl-3 pt-3">Result</h3>
+            <h3 id="additionResult" class="d-inline-block pl-3 pt-3">Result: </h3><br>
+            <input type="button" value = "AC" class="px-5" onClick="reset()" id="reset">
         </div>
         <hr>
     </div>

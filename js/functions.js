@@ -14,54 +14,57 @@ randomName = () => {
 const result = document.getElementById('additionResult');
 const num1 = document.getElementById('add_num1');
 const num2 = document.getElementById('add_num2');
+let reset = document.getElementById('reset');
+const lastResult = document.getElementById('lastResult');
 
 
 addition = () => {
-    const finalNum1 = Number(num1.value);
-    const finalNum2 = Number(num2.value);
-    outputAddition(finalNum1, finalNum2);
+    let a = num1.value + " + " + num2.value; // what we write
+    let b = Number(num1.value) + Number(num2.value); // final output
+    outputHtml(a, b);
+    return b;
 }
 
-function outputAddition(a, b) {
-    result.innerHTML = a + b;
-}
 
 // substraction
 
 substraction = () => {
-    const finalNum1 = Number(num1.value);
-    const finalNum2 = Number(num2.value);
-    outputSubstraction(finalNum1, finalNum2);
+    let a = num1.value + " - " + num2.value; // what we write
+    let b = Number(num1.value) - Number(num2.value); // final output
+    outputHtml(a, b);
 }
 
-function outputSubstraction(a, b) {
-    result.innerHTML = a - b;
-}
 
 // multiplication 
 
 multiplication = () => {
-    const finalNum1 = Number(num1.value);
-    const finalNum2 = Number(num2.value);
-    outputMultiplication(finalNum1, finalNum2);
+    let a = num1.value + " * " + num2.value; // what we write
+    let b = Number(num1.value) * Number(num2.value); // final output
+    outputHtml(a, b);
 }
-
-function outputMultiplication(a, b) {
-    result.innerHTML = a * b;
-}
-
 
 // division
 
 division = () => {
-    const finalNum1 = Number(num1.value);
-    const finalNum2 = Number(num2.value);
-    outputDivision(finalNum1, finalNum2);
+    let a = num1.value + " / " + num2.value; // what we write
+    let b = Number(num1.value) / Number(num2.value); // final output
+    outputHtml(a, b);
 }
 
-function outputDivision(a, b) {
-    result.innerHTML = a / b;
+function outputHtml(a, b) {
+    result.innerHTML = a + " = " + b + "<br>";
 }
+
+// reset function
+console.log(result.innerHTML);
+
+reset = () => {
+    num1.value = "";
+    num2.value = "";
+    result.innerHTML = 'Result : ';
+}
+
+
 
 
 
