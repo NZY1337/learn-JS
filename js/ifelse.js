@@ -492,7 +492,7 @@ delete crack.arr3, delete crack.arr5;
  delete crack.arr2;
 
 
- console.log(crack); // empty object;
+ 
 
 
 
