@@ -6,31 +6,3 @@ body, html {
   font-family: 'Playfair Display', serif;
 }
 
-table {
-  border-collapse: collapse;
-  width:90%;
-  text-center
-}
-
-th, td {
-  border:1px solid black;
-  padding:30px;
-}
-
-ul {
-  list-style: none;
-  padding:0;
-}
-
-p {padding:0;margin:0;font-size:18px}
-
-#studies {
-  display: flex;
-  justify-content: around;
-  align-items: center;
-}
-
-#studies li {
-  width: 33.3%;
-  text-align: center;
-}
