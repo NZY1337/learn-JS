@@ -152,6 +152,7 @@ for (prop in userNames) {
 
 // SHOPPING LIST BUILDER
 
+/*
 let shoppingList = [];
 let items = prompt('How many items do you want to add?');
 let myItem;
@@ -166,11 +167,11 @@ for (let item = 0; item < items; item++) {
     }
 }
 
-// output the shopping list;
-
 for (let item of shoppingList) {
     console.log(item);
 }
+*/
+
 
 
 var output = document.getElementById("table");
@@ -184,3 +185,4 @@ for (var row = 0; row < 5; row++) {
 }
 teibal += "</table>";
 output.innerHTML = teibal;
+

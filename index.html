@@ -26,14 +26,12 @@
 
 <div id="yourName" class="text-center bg-dark text-white py-2">Change This with your name</div>
 <div id="age" class="text-center bg-danger text-white py-2">Write Down Your Age</div>
-<div id="gender" class="text-center bg-primary text-white py-2">Write Down Your Gender</div
+<div id="gender" class="text-center bg-primary text-white py-2">Write Down Your Gender</div>
 <div id="nameArr" class="text-center bg-dark text-white py-2">is Your Name In The Array?</div>
   
 <div class="container">
     <h1>hello world</h1>
 </div>
-
-
 
 
 
@@ -57,19 +55,89 @@
     <div id="nr3" class="pr-2"></div>
 </div>
 
-<div class="container my-5">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-lg-6 py-5">
+        <div class="col-lg-6 pt-5">
             <table align="center" id="table" class=""></table>
         </div>
     </div>
 </div>
 
 
+<div id="table"></div>
+<input type="button" value="Click Me" class="my-4 d-block mx-auto" onclick="randomName()">
+<h3 id="myname" class="text-center">My name is: </h3>
 
-<div id="table">
-    
+<!-- calculator -->
+<section id="calculator" class="py-5 mt-5 text-center">
+    <!-- addition -->
+    <div id="addition-section">
+        <h1 class="text-center pb-3">Calculator</h1>
+        <div class="addition text-center">
+            <h3 id="lastResult"></h3>
+            First: <input type="text" id="add_num1">
+            Second: <input type="text" id="add_num2">
+            <br>
+           
+            <input type="button" class="my-2" onClick="addition()" value="+">
+            <input type="button" class="my-2" onClick="substraction()" value="-"> 
+            <input type="button" class="my-2" onClick="multiplication()" value="*"> 
+            <input type="button" class="my-2" onClick="division()" value=":"> 
+            <h3 id="additionResult" class="d-inline-block pl-3 pt-3">Result: </h3><br>
+            <input type="button" value = "AC" class="px-5" onClick="reset()" id="reset">
+        </div>
+        <hr>
+    </div>
+</section>
+
+
+<!--  crack the code game -->
+<section id="crackthecode" class="mb-5 text-center pb-5">
+    <input type="text" id="code1">
+    <input type="text" id="code2">
+    <input type="text" id="code3">
+    <br>
+    <input type="button" class="mt-4" onClick="crackCode()" value="Try Code">
+    <br>
+    <h2 id="crack_output"></h2>
+</section>
+
+<div id="selfInv">OUTPUT</div>
+
+<!-- Guessing Game -->
+<div class="guessing mb-5 py-3 text-center bg-dark text-white">
+    <div class="text-center pb-2" id="guess">Your Guessing Answer</div>
+    <input type="button" onClick="guessFun()" value="Guess Game">
 </div>
+
+
+<!-- Shuffle Arrays -->
+
+<div class="guessing mb-5 py-3 text-center bg-danger text-white">
+    <div class="text-center pb-2" id="guess">Shuffle Arr</div>
+    <input type="button" onClick="shuffleSwap()" value="Shuffle Arrays">
+    <h5 id="shuffle"></h5>
+</div>
+
+<!-- Remove Duplicates -->
+<div class="guessing mb-5 py-3 text-center bg-dark text-white">
+    <div class="text-center pb-2" id="guess">Remove Duplicates</div>
+    <input type="button" onClick="removeDuplicates()" value="Remove Duplicates">
+    <h5 id="duplicates"></h5>
+</div>
+ 
+
+<div class="guessing mb-5 py-3 text-center bg-danger text-white">
+    <div class="text-center pb-2" id="guess">Item List</div>
+    <input type="text" id="item" class="d-block mx-auto mb-2">
+    <input type="button" onClick="addItem()" value="Add Item">
+    <h5 id="list"></h5>
+</div>
+
+
+
+
+
 
 
 
@@ -87,6 +155,8 @@
 <script src="js/domCrashCourse.js"></script>
 <script src="js/ifelse.js"></script>
 <script src="js/loops.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/functional.js"></script>
  
 </body>
 </html>
