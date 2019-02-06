@@ -430,84 +430,74 @@ checkStr = string => {
 // CARD DECK GAME //
 ///////////////////
 
+/*
+var suits = ["spades", "hearts", "clubs", "diams"];
+var cardFace = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+var players = [];
+var cards = [];
 
-const suits = ['diams',  'hearts', 'spades', 'clubs'];
-const cardFace = ['2','3','4','5','6','7','8','9','10','J', 'Q', 'K', 'A'];
-let cards = [];
-let players = [];
-
-// start deal - main function
-startDeal = () => {
-    const num = Number(document.getElementById('players').value);
-    // reset the players & cards arr
+function startDeal() {
     players = [];
     cards = [];
-    
-    for (let i = 0; i < num; i++) {
+
+    var num = Number(document.getElementById("players").value);
+    for (var i = 0; i < num; i++) {
         players[i] = [];
-    }   
+    }
     
-    buildCards();
-    shuffleCard(cards);
-    deal(cards);
-    // console.log(players);
-} 
+    buildCards(cards);
+    shuffleCards(cards);
+    deal();
+    console.log(cards);
+    console.log(players);
+}   
 
-
-// build the card`Deck - faze I
-function buildCards() {
+function buildCards(card) {
     for (s in suits) {
-        const bgColor = suits[s] === 'hearts' || suits[s] === 'diams' ? 'red' : 'black';
+        var bgColor = (suits[s] == "hearts" || suits[s] == "diams") ? "red" : "black";
         for (c in cardFace) {
-            cards.push({
-                suit : suits[s],
-                num : cardFace[c],
-                bgColor : bgColor
-            });
+            var card = {
+                suit: suits[s],
+                num: cardFace[c],
+                bgColor: bgColor,
+                // v: (Number(c) + 2)
+            }
+            cards.push(card);
         }
     }
-} 
+    return cards;
+    console.log(card);
+}
 
-
-// randomize the cards order - faze II
-function shuffleCard(card) {
-    for (let i = 0; i < card.length;i++) {
-        
-        let randomCard = Math.floor(Math.random() * (card.length + 1));
-        let temp = card[i];
-        card[i] = card[randomCard];
-        card[randomCard] = temp;
+function shuffleCards(array) {
+    for (let x = 0; x < array.length;x++) {
+        var ii = Math.floor(Math.random() * (x + 1));
+        var temp = array[x];
+        array[x] = array[ii];
+        array[ii] = temp;
     }
-    return card;
-}   
- 
+    return array;
+}
 
-// deal cards to the players - faze III
-deal = card => {
-    let playersLen = players.length;
-    const output = document.getElementById('output');
-
-    let p = 0;
-    for (let i = 0; i < card.length; i++) {
-        players[p].push(cards[i]); // i = random
+function deal() {
+    var num = players.length;
+    var output = document.getElementById("output");
+    var p = 0;
+    for (var i = 0; i < cards.length; i++) {
+        players[p].push(cards[i]);
         p++;
-        if (p >= playersLen) {
+        if (p >= num) {
             p = 0;
         }
     }
-    
-    for (var i = 0; i < playersLen; i++) {
+    for (var i = 0; i < num; i++) {
         output.innerHTML += "<br>Players : " + (i + 1) + "<br>";
         for (var x = 0; x < players[i].length; x++) {
-            var plr = players[i][x];
-            output.innerHTML += "<span style=\"color:" + plr.bgColor + "\">" + plr.num + "&" + plr.suit + ";</span>";
+            var p = players[i][x];
+            output.innerHTML += "<span style=\"color:" + p.bgColor + "\">" + p.num + "&" + p.suit + ";</span>";
         }
-        output.innerHTML += "<br class='pt-5'>" ;
+        output.innerHTML += "<br>";
     }
 }
 
-
-// repeated code
-
-
-
+*/
