@@ -1,6 +1,3 @@
 {
-    "editor.fontSize": 13.5,
-    "editor.hideCursorInOverviewRuler": true,
-    "editor.scrollbar.vertical": "hidden",
-    "editor.scrollbar.horizontal": "hidden"
+    "editor.fontSize": 15.5,
 }
