@@ -254,26 +254,6 @@ addItem = () => {
 }
 */
 
-// CALLBACKS - VERY GOOD explanation DOWNHERE
-
-function myName(name, koko){
-    alert(name + koko);//
-}
-
-function secondName(name, koko, callback){
-    callback(name, koko);
-}
-
-secondName('Andrei', 'Mocanu', myName);
-
-// example 
-function sum(num1, num2, callback){
-    return callback(num1, num2);
-}
-function add(a, b) {
-    return a + b;
-}
-sum(1,2, add);
 
 
 
@@ -282,79 +262,13 @@ sum(1,2, add);
 
 
 
-// callback Functions
-function person(name, age, callback) {
-    const fullName = name + age + callback(location);
-    // console.log(fullName);
-}
-
-person('Andrei', 29, function(location){
-    location = 'Bucharest';
-    return location;
-});
-
-
-// callback Functions
-function makeMessage(s1, s2, callback) {
-    const result1 = callback(s1,s2);
-    return result1;
-}
-
-makeMessage(10, 20, function(a, b){
-    const result2 = a + b + 20;
-    return result2;
-});
-
-
-// callback Functions
-function doHomework(val, callback){
-    if (val == 'yes') {
-        callback('allowed');
-    } else {
-        callback('not allowed');
-    }
-}
-
-doHomework('bad', function(commitment){
-    if (commitment) {
-        // console.log('You are' + ` ${commitment} to go outside`);
-    }
-    else {
-        // console.log('Yo are' + ` ${commitment} to go outside`);
-    }
-});
-
-
-// callback functions
-function human(age, location, callback) {
-    let result = `${age}, ${location}, ` + callback(gender);
-    // console.log(result);
-}
-
-human(29, 'Piatra-Neamt', function(gender){
-    // gender = prompt('What is your gender?');
-    return gender;
-});
 
 
 
-// callback functions
-let arr = [1,2,3,4,5,6];
 
-function higher(array, callback){
-    let asd = 10;
-    let result = asd + callback(array);
-    console.log(result);
-}
 
-higher(arr, function(array){
-    let result = 0;
-    array.map(function(item){
-        if (item > 5) {
-            result += item;
-        }
-    })
-    
-    return result;
-});
+
+
+
+
 
