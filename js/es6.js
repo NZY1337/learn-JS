@@ -211,3 +211,68 @@ function findWhere(array, criteria) {
 
 // EVERY & SOME--------------
 
+let computers = [
+    { name: 'Apple', ram: 14 },
+    { name: 'Compaq', ram: 12 },
+    { name: 'Acer', ram:18 },
+    { name: 'Asus', ram:16 }
+];
+
+let allComputersCanRunPrograms = true;
+let onlySomeComputersCanRunPrograms = false;
+
+for (let i = 0; i < computers.length;i++) {
+    if (computers[i].ram < 16) {
+        allComputersCanRunPrograms = false;
+    } else {
+        onlySomeComputersCanRunPrograms = true;
+    }
+}
+
+////////////////////////////////////
+var requests = [
+    { url: '/photos', status: 'complete' },
+    { url: '/albums', status: 'pending' },
+    { url: '/users', status: 'failed' }
+];
+
+const inProgress = requests.some(function(request){
+    return request.status === 'pending';  // true at least 1 is true ||
+});
+
+////////////////////////////////////
+var users = [
+    { id: 21, hasSubmitted: true },
+    { id: 62, hasSubmitted: false },
+    { id: 4, hasSubmitted: true }
+  ];
+  
+const hasSubmitted = users.every(function(user){
+    return user.hasSubmitted === true; // false all need to be true &&
+});
+console.log(hasSubmitted);
+
+////////////////////////////////////
+Field = function(value) {
+    this.value = value;
+}
+
+Field.prototype.valid = function() {
+    return this.value.length > 4;
+}
+
+let user = new Field('2coolforyou');
+let pass = new Field('my_password');
+let birthday = new Field('06/01/1990');
+
+let validateField = [user, pass, birthday];
+
+const validateFieldVal = validateField.every(function(field){
+    return field.valid();
+});
+
+
+
+
+
+// REDUCE -------------- 
