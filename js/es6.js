@@ -250,7 +250,6 @@ var users = [
 const hasSubmitted = users.every(function(user){
     return user.hasSubmitted === true; // false all need to be true &&
 });
-console.log(hasSubmitted);
 
 ////////////////////////////////////
 Field = function(value) {
@@ -271,8 +270,67 @@ const validateFieldVal = validateField.every(function(field){
     return field.valid();
 });
 
+    
+
+// REDUCE -------------- reduces the array to a single value. It executes a provided function for each value of the array (from left-to-right);
+const nr = [10, 20, 30];
+let smm = 0;
+
+const addd = nr.reduce(function(smma, number){
+    return smm += number;
+}, 0);
+  
+
+const primaryColors = [
+    { color: 'red' },
+    { color: 'yellow' },
+    { color: 'beige'}  
+];
+
+const asd = primaryColors.reduce(function(newArr, previous){
+   newArr.push(previous.color);
+   return newArr; 
+}, []);
 
 
+//////////////////////////////////// --- practical example interview question reduce;
+// check if a string is balanced;
+
+// falsy Values - learn about it
+balancedParens = string => {
+    return string.split('').reduce(function(prev, character){
+        if (prev < 0) {return prev};
+        if (character === '(') { return ++prev }
+        if (character === ')') { return --prev }
+        return prev;
+    },0);
+}
+
+// console.log(balancedParens('))'));
 
 
-// REDUCE -------------- 
+// VERY IMPORTANT - POSTFIX - PREFIX
+let x = 2;
+// postfix - returns the original(default) value of the incremented var before being returned - intoarce valoarea variabilei inainte sa fie incrementate
+// console.log(x++); // returns 2
+// postfix - returns the new value of the variable after being incremented - intoarce valoarea variabilei inainte sa fie incrementate
+// console.log(++x); // returns 3; 
+
+
+const desks = [
+    { type: 'sitting' },
+    { type: 'standing' },
+    { type: 'sitting' },
+    { type: 'sitting' },
+    { type: 'standing' }
+];
+  
+const deskTypes = desks.reduce(function(total, desk) {
+      if (desk.type === 'sitting') {++total.sitting}
+      if (desk.type === 'standing') {++total.standing}
+      return total
+  }, { sitting: 0, standing: 0 });
+
+
+const NMBRS = [1, 1, 3, 4, 5, 5];
+
