@@ -57,9 +57,9 @@
         <div class="col-12">
             <div id="card-deck" class="w-100 p-4  d-inline-block mx-auto text-center">
                 <div id="start"></div> How many Players ?
-                <input type="number" id="players" min="1" max="5">
+                <input type="number" id="players" min="1" max="5" value="1">
                 <button id="btnDeal" type="button" onClick="startDeal()">Deal</button>
-                <h2 id="output"></h2>
+                <h2 id="output" class="py-1"></h2>
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@
     <div class="row text-center">
         <div class="col-12">
             <div id="repeated" class="text-center">
-            <script>
+                 <script>
                     let test = document.getElementById('repeated');
                     for (let i = 0; i < 3; i++) {
                         test.innerHTML += 'hello world' + '<br>'

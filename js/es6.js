@@ -173,7 +173,7 @@ const megaProducts = [
 ];
 
 const firstVal = megaProducts.find(function(item){
-    return item.quantity > 10; 
+    return item.quantity === 10; 
 })
 
 const posts = [
@@ -329,8 +329,96 @@ const deskTypes = desks.reduce(function(total, desk) {
       if (desk.type === 'sitting') {++total.sitting}
       if (desk.type === 'standing') {++total.standing}
       return total
-  }, { sitting: 0, standing: 0 });
+}, { sitting: 0, standing: 0 });
 
 
 const NMBRS = [1, 1, 3, 4, 5, 5];
 
+
+// console.log(unique(NMBRS));
+
+function unic(arr){
+    let finalArr = [];
+    for (let i = 0; i < arr.length;i++) {
+        // console.log(arr[i]);
+        const found = finalArr.find(function(item){
+            return item === arr[i];
+        });
+        
+        if(found !== arr[i]) {
+            finalArr.push(arr[i]);
+        }
+    }
+    return finalArr;
+}
+
+// console.log(unic(NMBRS));
+
+/*
+    const megaProducts = [
+        { name : 'cucumber', type: 'vegetable', quantity: 0, price: 1 },
+        { name : 'banana', type: 'fruit', quantity: 10, price: 20 },
+        { name : 'cerries', type: 'fruit', quantity: 21, price: 21 },
+        { name : 'cucumber', type: 'vegetable', quantity: 15, price: 4 },
+        { name : 'mushrooms', type: 'vegetable', quantity: 3, price : 1.25 }
+    ];
+
+    const firstVal = megaProducts.find(function(item){
+        return item.quantity ==== 10; 
+    })
+
+*/
+
+
+var leet = [1, 1, 2, 3, 4, 4];
+
+
+function unique(array) {
+  return array.filter(function(v, i, arr){
+        // return the numbers form the written indexes
+        // return the items where the index i = arr.indexOf(item);
+        return i === arr.indexOf(v); //returns 1234
+        // return i !== arr.indexOf(v); // retrns 1, 4
+  });
+}
+
+// console.log(unique(leet));
+// it logs 1, 2, 3, 4 
+
+function uniQ(arr) {
+    let newAr = [];
+    for (let i = 0; i < arr.length;i++) {
+        if (i === arr.indexOf(arr[i])) {
+            newAr.push(arr[i]);
+        }
+    }
+    return newAr;
+}
+
+// it logs 1, 2, 3, 4
+
+
+const names = ["Mike","Matt","Nancy","Adam","Jenny","Nancy","Carl"];
+
+uniqueArray = names.filter(function(item, pos) {
+    console.log('index: ' + names.indexOf(item) + ' item-> ' + item  + ' pos: ' + pos);
+    return names.indexOf(item) == pos;
+});
+
+
+var numArray = [1, 3, -4, 5, 99];
+for (var i = 0; i < numArray.length - 1; i++) {
+    var min = i;
+    for (var j = i + 1; j < numArray.length; j++) {
+        if (numArray[j] < numArray[min]) {
+            min = j;
+        }
+    }
+    
+    if (min != i) {
+        var target = numArray[i];
+        numArray[i] = numArray[min];
+        numArray[min] = target;
+    }
+}
+console.log(numArray);
