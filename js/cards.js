@@ -23,10 +23,10 @@ startDeal = () => {
    for (let i = 0; i < playerNums;i++) {
        players[i] = [];
    }
-   
+
    buildCards(cards);
    shuffleCards(cards);
-   
+   dealCards();
 }
 
 // build the cardDeck
@@ -59,5 +59,24 @@ shuffleCards = card => {
 
 // give cards to players
 dealCards = () => {
+    let totalPlayers = Number(document.getElementById('players').value);
+    let p = 0;
+    let output = document.getElementById('output');
+    // we have to split the numbers of cards by the number of players
+    for (let i = 0; i < cards.length;i++) {
+        players[p].push(cards[i]);
+        p++;
+        if (p == totalPlayers) {
+            p = 0;
+        }
+    }
+    
+    return players.filter(function(item,index){
+        output.innerHTML += "<br>Players : " + (index + 1) + "<br>";
+        const filtr = item.filter(function(prop){
+            output.innerHTML += "<span class='pt-2' style=\"color:" + prop.cardColor + "\">" + prop.cardNum + "&" + prop.cardType + ";</span>";
+        });
+    });
     
 }
+
