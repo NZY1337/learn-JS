@@ -14,7 +14,7 @@ table#actualTableHeader {
    border: 1px solid rgba(255,255,255,0.3);
    border-bottom:none;
    box-shadow:none;
-   padding:5px;
+   padding:0 1rem;
 }
 
 /* FINISH THeader */
