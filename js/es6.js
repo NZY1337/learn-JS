@@ -421,4 +421,32 @@ for (var i = 0; i < numArray.length - 1; i++) {
         numArray[min] = target;
     }
 }
-console.log(numArray);
+// console.log(numArray);
+
+
+
+// ARROW FUNCTIONS
+
+const team = {
+    members : ['Jane', 'Bill'],
+    teamName : 'Super Squad',
+    
+    /*
+    teamSummary : function () {
+        return this.members.map(function(member){
+            return `${member} is on team ${this.teamName}`
+        });
+    }
+    */
+    // it doesn't work because when we pass an anonymus function, that function doesn't know who 'this' keyword is
+    // fixes
+    teamSummary : function () {
+        return this.members.map(member => {
+            return `${member} is on team ${this.teamName}`; 
+        });
+    }
+
+
+}
+
+console.log(team.teamSummary());

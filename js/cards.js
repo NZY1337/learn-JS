@@ -77,6 +77,5 @@ dealCards = () => {
             output.innerHTML += "<span class='pt-2' style=\"color:" + prop.cardColor + "\">" + prop.cardNum + "&" + prop.cardType + ";</span>";
         });
     });
-    
 }
 
