@@ -514,8 +514,6 @@ function myCar({ car, type, wheels }, { color }) {
 myCar(Obj, { color: 'red' });
 
 
-
-
 // DEST ARRAYS -------
 
 let arr = ['car', 'mellow', 'suit', 'apple'];
