@@ -15,7 +15,39 @@ table#actualTableHeader {
    border-bottom:none;
    box-shadow:none;
    padding:0 1rem;
+   font-size: 12px
 }
+
+
+table#actualTableHeader thead input {
+    background:transparent;
+    border:1px solid #000;
+    margin-left:2px;
+    color:#000;
+    width: 60px;
+    display: inline-block;
+    padding:3px;
+}
+
+table#actualTableHeader thead th{
+    position: relative;
+    padding:1.5rem 0;
+    background-color: rgba(255,255,255,0.3);
+    border-right:1px solid black;
+    color:black;
+}
+
+table#actualTableHeader thead th::after {
+    content: '\f063';
+    font-family: FontAwesome;
+    position: absolute;
+    display: block;
+    left:50%;
+    bottom:5px;
+    color:black;
+    font-size: 12px;
+}
+
 
 /* FINISH THeader */
 
@@ -35,6 +67,11 @@ table caption {
     font-weight: 100;
 }
 
+.col-lg-12 {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    padding:2rem
+}
+
 table {
     border-collapse: separate;
     border-spacing: 0px 15px;
@@ -43,13 +80,14 @@ table {
     width: 100%;
     table-layout: fixed;
     cursor: pointer;
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    font-size: 13px;
     color:white;
 }
 
 table td {
     background-color: rgba(255,255,255,0.3);
 }
+
 
 table th {
     text-align: center;
@@ -61,7 +99,6 @@ table th {
 
 table td {
     text-align: center;
-    padding:5px;
     padding:15px;
 }
 
@@ -75,7 +112,7 @@ table tfoot th {
 }
 
 .table-content {
-    height:277px; 
+    height:260px; 
     overflow-x:auto;
     margin-top: 0px;
     border: 1px solid rgba(255,255,255,0.3);
@@ -93,4 +130,45 @@ table tfoot th {
 
 ::-webkit-scrollbar-thumb {
     -webkit-box-shadow:  inset 0 0 6px black;
+}
+
+
+/* responsive */
+@media (max-width:767px) {
+    table thead {
+        display: none;
+    }
+
+    table caption {
+        font-size: 20px;
+    }
+    
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ffa500;
+        display: block;
+        margin-bottom: .625em;
+    }
+        
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td:last-child {
+        border-bottom:none;
+    }
+    
+    .table-content {
+        height: 350px;
+        border-top:none;
+    }
 }
