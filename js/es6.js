@@ -401,7 +401,7 @@ function uniQ(arr) {
 const names = ["Mike","Matt","Nancy","Adam","Jenny","Nancy","Carl"];
 
 uniqueArray = names.filter(function(item, pos) {
-    console.log('index: ' + names.indexOf(item) + ' item-> ' + item  + ' pos: ' + pos);
+    // console.log('index: ' + names.indexOf(item) + ' item-> ' + item  + ' pos: ' + pos);
     return names.indexOf(item) == pos;
 });
 
@@ -445,8 +445,206 @@ const team = {
             return `${member} is on team ${this.teamName}`; 
         });
     }
-
-
 }
 
-console.log(team.teamSummary());
+// console.log(team.teamSummary());
+
+
+
+
+// ...args - SPREAD Operator --------------
+//  spread operator (...) accepts an unknown numbers of parameters which are stored in an array
+// ...nmbr = ARRAY --> [...nmbr]
+function nmbr(...nmbr) {
+    return nmbr.reduce(function(number, acc){
+        return acc + number;
+    },0);
+}
+
+let max1 = [1, -2, 3, 4];
+let max2 = [8, 3, -8, 1];
+
+// console.log(( Math.max(...max1, ...max2)); // will result a single max array
+
+const myPalleteColours = ['red', 'green', 'blue'];
+let clientPaletteColours = ['beige', 'purple', 'kaki', 'orange'];
+
+const concatArr = ['addedOneStart', ...myPalleteColours, ...clientPaletteColours, 'addedOneEnd'];
+
+// important
+let str = "Hello";
+    
+// console.log( [...str] ); // H,e,l,l,o
+
+// When ... is at the end of function parameters, it’s “rest parameters” and gathers the rest of the list of arguments into an array.
+// When ... occurs in a function call or alike, it’s called a “spread operator” and expands an array into a list.
+
+
+
+// DEFAULT PARAMS --------------------
+// 
+function pers(first, lastN = 'Mocanu') {
+    return `${first} ${lastN}`;
+}
+
+pers('Andrei');
+
+
+
+
+// DESTRUCTURATING ESX ---------------
+// DEST OBJ
+
+const Obj = {
+    car : 'Mercedes',
+    type : 'car',
+    wheels : 4,
+    owner : 'Andrei'
+}
+
+// car, type, wheels = are variables now
+// we don't have to keep tracking for the correct order of the args
+const { car, type, wheels } = Obj;
+const {owner} = Obj;
+
+function myCar({ car, type, wheels }, { color }) {
+    return `I have an ${car} which is a ${type} that has ${wheels} with a ${color} color`;
+}
+
+myCar(Obj, { color: 'red' });
+
+
+
+
+// DEST ARRAYS -------
+
+let arr = ['car', 'mellow', 'suit', 'apple'];
+const [, , suyt] = arr;
+// console.log(suyt); // 'suit'
+
+[prop1, prop2, prop3] = arr;
+// prop1 = 'car';
+// prop2 = 'mellow';
+// prop3 = 'suit';
+
+// using rest
+
+[propCar, ...rest] = arr;
+// propcar = 'car'
+// ...rest = 'the rest of the arr
+
+// const companies = [
+//     { name: 'Google', settled: 'Mountain view' },
+//     { name: 'Facebook', settled: 'Menlo Park' },
+//     { name: 'Uber', settled: 'San Francisco' }
+// ];
+
+
+// const [{ settled }, ...restComp] = companies 
+// console.log(settled); // companies[0].settled;
+// console.log(restComp); // fbk, uber
+// const [, , {name}] = companies;
+// console.log(name) //Uber
+
+
+//////////////////////////////////////////////////////////////////
+// ',' --> WORKS ONLY ONY ARRAYS TO SKIP HOW MANY ITEMS WE WANT //
+//////////////////////////////////////////////////////////////////
+
+
+//----------------
+
+const Google = {
+    locations : ['Mountain View', 'New York', 'London'],
+    cities : ['Bucharest', 'Praga', 'Vienna']
+}
+
+
+const { locations: [, newyork] } = Google;
+// console.log(newyork);// New York
+const {cities: [ buc ]} = Google;
+// console.log(buc); //Buc
+
+
+
+// WHEN TO USE DESTRUCTURATING - WHEN WE NEED TO PASS A BUNCH OF PARAMS AND WHEN WE MIGHT LOSE
+// THE RIGHT ORDER OF THEM
+
+/*
+function signup(username, password, email, dateOfBirth, city) {
+    // create new User
+}
+
+signup('myname', 'mypass', 'email@example.com', '1/1/1990', 'New York');
+*/
+
+const usrr = {
+    username: 'myname',
+    password: 'mypass',
+    email: 'email@example.com',
+    dateOfBirth: '1/1/1990',
+    city: 'New York'
+}
+
+// and the final function with DESTRUCTURATING
+
+function signup({username, password, email, dateOfBirth, city}) {
+    // create new User
+}
+
+signup(usrr);
+
+// Practical usage of destructurating
+const points = [
+    [4, 5],
+    [6, 7],
+    [0, 40]
+];
+
+const pnts = points.map(pair => {
+   let myObj = {}
+   myObj = {
+       pointX: pair[0],
+       pointY: pair[1]
+   }
+   return myObj;
+}); 
+
+// ----------- OR x DESTRUCTURATING
+
+const pNts = points.map(([x, y]) => {
+    // return { x: x, y: y }
+    return { x, y }
+});
+
+
+// example of destr
+const profile = {
+    title: 'Engineer',
+    department: 'Engineering'
+  };
+  
+function isEngineer({title, department}) {
+    return title === 'Engineer' && department === 'Engineering';
+}
+
+// example of destr
+const classes = [
+    [ 'Chemistry', '9AM', 'Mr. Darnick' ],
+    [ 'Physics', '10:15AM', 'Mrs. Lithun'],
+    [ 'Math', '11:30AM', 'Mrs. Vitalis' ]
+];
+  
+const classesAsObject = classes.map(([subject, time, teacher]) =>{
+    return { subject, time, teacher }
+});
+
+
+
+// example of destr
+const nrsss = [1, 2, 3];
+
+function double(...rest) {
+    return rest * 2
+}
+
