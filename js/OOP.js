@@ -59,6 +59,15 @@ console.log(changeObjVal.car);
 
 
 
+
+
+
+
+
+
+
+
+
 //  CLASSES JS ----------- 
 
 // destructurated
