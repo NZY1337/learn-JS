@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://127.0.0.1:5500/guessGame.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guess Game</title>
+    <link rel="stylesheet" href="./Guess Game_files/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Guess Game_files/font-awesome.min.css">
+    <link rel="stylesheet" href="./Guess Game_files/guessGame.css" type="text/css">
+    <link href="./Guess Game_files/css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container">
+        <div class="row justify-content-center text-white">
+            <div class="col-lg-12 text-center">
+                <h1 class="pt-4">Guess Game</h1>
+            </div>
+                
+            <div class="col-lg-8 text-center mt-5">
+                <div class="score mr-4 d-inline">
+                    <h5 class="d-inline">Your Score Out Of 'SIX'  Moves:</h5>
+                    <small id="score"></small>
+                </div>
+    
+                <button class="btn-reset ml-4">Reset Game</button>
+            </div>
+        </div>
+        <h2 class="failOrLoose text-center pt-4">status </h2>
+    
+        <hr class="my-5">
+</div>
+
+<div class="container" id="game">
+    <!-- <div class="row my-5 justify-content-center">
+        <div class="col-lg-10 text-center" id="wrapper-game">
+                <div class="flipped-container">
+                    <div class="flipped-container-inner">
+                        <div class="flipped-container-front">
+                        </div> 
+                        
+                        <div class="flipped-container-back d-flex align-items-center justify-content-center">
+                                
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div> -->
+<div class="row justify-content-center"><div class="col-lg-10 text-center"><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div><div class="flipped-container"><div class="flipped-container-inner"><div class="flipped-container-front"></div><div class="fipped-container-back"></div></div></div></div></div></div>
+
+
+<!--  -->
+<script src="./Guess Game_files/jquery-3.2.1.min.js.descărcare"></script>
+<script src="./Guess Game_files/popper.min.js.descărcare" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="./Guess Game_files/bootstrap.min.js.descărcare" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./Guess Game_files/jquery.waypoints.min.js.descărcare"></script>
+
+<script src="./Guess Game_files/guessGame.js.descărcare"></script>
+
+
+ 
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					head.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					head.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+</body></html>

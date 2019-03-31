@@ -1,0 +1,164 @@
+
+// https://jsbin.com/dobedul/1/edit?js,console,output
+
+/*
+const pics = [ 
+    {
+        src:  'https://images.pexels.com/photos/825864/pexels-photo-825864.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        id: 'pic-1'
+    },
+
+    {
+        src: 'https://images.pexels.com/photos/1029604/pexels-photo-1029604.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        id: 'pic-2'
+    },
+
+    {
+        src: 'https://images.pexels.com/photos/2017299/pexels-photo-2017299.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        id : 'pic-3'
+    },
+
+    {
+        src: 'https://images.pexels.com/photos/1188470/pexels-photo-1188470.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        id: 'pic-4'
+    },
+    
+    {
+        src: 'https://images.pexels.com/photos/2027104/pexels-photo-2027104.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        id: 'pic-5'
+    },
+
+    {
+        src: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+        id: 'pic-6'
+    }
+];
+
+const holder = document.querySelectorAll('.flipped-container-front');
+console.log(holder);
+function insertImg() {
+    const wrapper = document.querySelector('#wrapper-game');
+    const imgagesArr = [];
+
+    for (let i of pics) {
+        // very important - we need to create images here 
+        const img = document.createElement('img');
+        img.setAttribute('src', i.src);
+        imgagesArr.push(img);
+    }
+
+    for (let i = 0; i < holder.length;i++) {
+        holder[i].appendChild(imgagesArr[i]);
+    }
+
+}
+insertImg();
+
+*/
+
+// Game's LOGIC
+
+const defaultPic = [
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4LokF26kDxfCfGl8d-yu6kn6OHvroi90VRdXt20BOUjP7gAaL'
+];
+
+const chosenPics = [
+    {
+        src:  'https://images.pexels.com/photos/825864/pexels-photo-825864.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+    },
+    
+    {
+        src: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260',
+    },
+
+    {
+        src: 'https://previews.123rf.com/images/carmenbobo/carmenbobo1506/carmenbobo150600542/41642909-rubber-stamp-with-word-done-inside-vector-illustration.jpg'
+    },
+
+    {
+        src:  'https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2016/11/shutterstock_344519003-796x565.jpg'
+    }
+];
+
+
+const gameContainer = document.querySelector('#game');
+
+
+function createHtml() {
+    // create the div wrappers for the game
+    const row = document.createElement('div');
+    row.classList.add('row', 'justify-content-center');
+   
+    const col = document.createElement('div');
+    col.classList.add('col-lg-10', 'text-center');
+
+    row.appendChild(col);
+    
+    gameContainer.appendChild(row);
+  
+
+   for (let i = 0; i < 8; i++) {
+        // create the html game inner
+        const flippedContainer = document.createElement('div');
+        flippedContainer.classList.add('flipped-container');
+
+        const flippedContainerIner = document.createElement('div');
+        flippedContainerIner.classList.add('flipped-container-inner');
+
+        flippedContainer.appendChild(flippedContainerIner);
+        col.appendChild(flippedContainer);
+        
+        const flippedContainerFront = document.createElement('div');
+        flippedContainerFront.classList.add('flipped-container-front');
+
+        const flippedContainerBack = document.createElement('div');
+        flippedContainerBack.classList.add('fipped-container-back');
+
+        flippedContainerIner.appendChild(flippedContainerFront);
+        flippedContainerIner.appendChild(flippedContainerBack);
+        col.appendChild(flippedContainer);  
+        
+   }
+
+   return gameContainer.innerHTML;
+}
+
+createHtml();
+
+const containers = document.querySelectorAll('.flipped-container');
+const containerInner = document.querySelectorAll('.flipped-container-inner');
+
+
+// flip the second pic
+function addFlippEffect() {
+    for (let i = 0; i < containers.length;i++) {
+    
+        containers[i].addEventListener('click', function(e){
+          
+            const isClicked = true;
+            
+            if (isClicked) {
+                containerInner[i].classList.add('classRotate');
+                
+            } else {
+                addTimer(i);
+            }
+        });
+
+        for (let i = 0; i < containers.length;i++) {
+            setInterval(function(){
+                containerInner[i].classList.remove('classRotate');
+            }, 3000);
+        }
+    }
+}
+
+addFlippEffect();
+
+// add a comeback from first pic timer
+function addTimer(index) {
+    setInterval(function(){
+        containerInner[index].classList.remove('classRotate');
+    }, 3000);
+  
+}

@@ -1,0 +1,150 @@
+body, html {
+    width:100%;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+
+body {
+    background: url('http://unsplash.it/1200x800') center center no-repeat;
+    background-size: cover;
+    position: relative;
+}
+body:before {
+    content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
+	opacity: .6; 
+}
+
+.btn-reset {
+    /* background-image: linear-gradient(to right, #fe8c00 , #f83600); */
+    border:none;
+    padding: 8px 14px;
+    border-radius:0px;
+    background:none;
+    cursor:pointer;
+    border:2px solid orange;
+    color:orange;
+    position: relative;
+    transform: scale(1);
+}
+
+.btn-reset::before {
+    position: absolute;
+    content: '';
+    background-image: linear-gradient(to right, #fe8c00 , #f83600);
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all .3s;
+}
+
+.btn-reset:hover {
+    transform: scale(1.1);
+    color:white;
+    z-index: 1111;
+    transition: all .2s;
+}
+
+
+.btn-reset:focus {
+    transform: scale(1);
+}
+
+.btn-reset:hover::before {
+    width: 100%;
+    z-index: -11;
+}
+
+
+.pic-container {
+    display: inline-block;
+    margin:3px;
+}
+
+
+
+/* flipp effect */
+
+/* set the container's props */
+.flipped-container {
+    width:200px;
+    height:200px;
+    perspective:1000px;
+    display: inline-block;
+    margin:10px;
+}
+
+/* the inner of the container: pic + text */
+.flipped-container-inner {
+    position: relative;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.flipped-container-front, .flipped-container-back {
+    position: absolute;
+    width:100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+/* .flipped-container:hover .flipped-container-inner {
+    transform: rotateY(180deg);
+} */
+
+.classRotate {
+    transform: rotateY(180deg);
+}
+
+.flipped-container-back {
+    background-image: linear-gradient(to right, #fe8c00 , #f83600);
+    color: white;
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.flipped-container-front {
+    background-image: linear-gradient(to bottom, #4568DC , #B06AB3);
+    color: black;
+    z-index: 2;
+    border-radius:10px
+  }
+
+.flipped-container img {
+    width:200px;
+    height:200px;
+}
+
+.asd {position: relative;}
+
+h4.click {
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%,-50%);
+    transition:all .2s;
+    display: none;
+}
+
+.flipped-container:hover  h4.click{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.score {
+    font-size: 2.5rem;
+}

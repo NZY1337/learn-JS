@@ -114,7 +114,7 @@ form.addEventListener('submit', function(e){
         } 
         
     });
-
+    
     inputTypeNumber.addEventListener('keyup', function(e){
         if (this.value.length  != 0) { 
             this.classList.add('validBorder');
