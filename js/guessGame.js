@@ -1,6 +1,4 @@
 
-// Game's LOGIC
-
 const defaultPic = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4LokF26kDxfCfGl8d-yu6kn6OHvroi90VRdXt20BOUjP7gAaL'
 ];
@@ -11,7 +9,7 @@ const chosenPics = [
     },
     
     {
-        src: 'https://cdn.pixabay.com/photo/2013/07/13/10/32/bad-157437_960_720.png',
+        src: 'http://clipart-library.com/images/qcBozAMpi.jpg',
     },
 
     {
@@ -28,24 +26,48 @@ const gameContainer = document.querySelector('#game');
 const score = document.querySelector('#score');
 const yourMove = document.querySelector('#yourMove');
 const gameStatus = document.querySelector('#gameStatus');
-console.log(yourMove, gameStatus);
 let initialScore = 0;
 score.innerHTML = 0;
+let matched = false;
+let guessed = [];
+let containers = null;
+let containerInner = null;
+const input = document.querySelector("input[type='text']");
+
+
+// input function
+input.addEventListener('keyup', onlyEven);
+
+function onlyEven() {
+    var inputval = input.value;
+    
+    // Remove non numeric input
+    var numeric = inputval.replace(/[^0-9]+/,"");
+    
+   
+    if (!Number.isInteger(inputval/2)) {
+        console.log(inputval);
+        input.value = '';
+    }
+
+}
+
+const ten = 10;
 
 function createHtml() {
     // create the div wrappers for the game
     const row = document.createElement('div');
     row.classList.add('row', 'justify-content-center');
-   
+    
     const col = document.createElement('div');
     col.classList.add('col-lg-10', 'text-center');
 
     row.appendChild(col);
     
     gameContainer.appendChild(row);
-  
+    
 
-   for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < ten; i++) {
         // create the html game inner
         const flippedContainer = document.createElement('div');
         flippedContainer.classList.add('flipped-container');
@@ -65,39 +87,35 @@ function createHtml() {
         flippedContainerIner.appendChild(flippedContainerFront);
         flippedContainerIner.appendChild(flippedContainerBack);
         col.appendChild(flippedContainer);  
-        
    }
 
    return gameContainer.innerHTML;
 }
 
-createHtml();
-
-const containers = document.querySelectorAll('.flipped-container');
-const containerInner = document.querySelectorAll('.flipped-container-inner');
-
+function populateVars() {
+    containers = document.querySelectorAll('.flipped-container');
+    containerInner = document.querySelectorAll('.flipped-container-inner');
+}
 
 // flip to second pic
 function addFlippEffect() {
     for (let i = 0; i < containers.length;i++) {
         containers[i].addEventListener('click', function(e){
-               containerInner[i].classList.add('classRotate');
-               setTimeout(addTimer(i));
-            });
+            containerInner[i].classList.add('classRotate');
+            addTimer(i);
+        });
     }
 }
-
-addFlippEffect();
 
 // after 2 sec get back to first img
 function addTimer(index) {
     setTimeout(function(){
-        containerInner[index].classList.remove('classRotate');
-    },2000);
+        // if the win condition is true - matched = true;
+        if (!matched) {
+            containerInner[index].classList.remove('classRotate');
+        } 
+    },1000);
 }
-
-let guessed = [];
-
 
 // set the back Randomed Image FUNCTION
 function setBackImgRandomly() {
@@ -107,34 +125,40 @@ function setBackImgRandomly() {
         const createBackImg = document.createElement('img');
         backImgHolder[i].appendChild(createBackImg);
         
-        containers[i].addEventListener('click', function(e){
+        let clickCount = false;
+
+        containers[i].addEventListener('click', addIndex);
+        
+        function addIndex (e){
             const index = Math.floor(Math.random() < 0.5) ? 0 : 1;
             createBackImg.setAttribute('src', chosenPics[index].src);
             guessed.push(index);
+            // aici fac verificarea - daca poza e intoarsa nu ii punem alta sursa
+           
             win();
-        });
+        };
     } 
 } 
-
-setBackImgRandomly();
-
-
 
 function win() {
     if (guessed.length == 2 && guessed[0] == guessed[1]) {
         gameStatus.innerHTML = 'Game Staus: <span class="text-white win">Win</span>';
+        matched = true;
+        
         setTimeout(function(){
-            console.log('win');
             initialScore += 10;
             score.innerHTML = initialScore;
+            matched = false;
 
-            if (initialScore >= 30) {
+            if (initialScore >= 20) {
                 alert('You won');
                 initialScore = 0;
                 gameStatus.innerHTML = 'Game Status: ';
                 score.innerHTML = initialScore;
+                removeAllBackPics();
             }
-        }, 1000);
+        }, 1500);
+        
         guessed = [];
         
     } else if (guessed.length >= 2 && guessed[0] !== guessed[1]) {
@@ -147,18 +171,24 @@ function win() {
                 alert('you lost')
                 initialScore = 0;
                 gameStatus.innerHTML = 'Game Status: ';
+                removeAllBackPics();
             }
             score.innerHTML = initialScore;
-        }, 1000);
+        }, 1500);
         guessed = [];
     }
 }
 
 function removeAllBackPics() {
-    const images = document.querySelectorAll('img');
+    const images = document.querySelectorAll('.flipped-container-inner');
     for (let i of images) {
-        i.removeAttribute('src');
+        i.classList.remove('classRotate');
     }
-    console.log(guessed);
 }
+
+
+createHtml();
+populateVars()
+addFlippEffect();
+setBackImgRandomly();
 
