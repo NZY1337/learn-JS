@@ -34,9 +34,14 @@ let containers = null;
 let containerInner = null;
 const input = document.querySelector("input[type='text']");
 
+// we need this from bottom
+
+let asd = 10;
+input.value = asd;
+const ten = input.value;
 
 // input function
-input.addEventListener('keyup', onlyEven);
+input.addEventListener('keydown', onlyEven);
 
 function onlyEven() {
     var inputval = input.value;
@@ -44,15 +49,16 @@ function onlyEven() {
     // Remove non numeric input
     var numeric = inputval.replace(/[^0-9]+/,"");
     
-   
     if (!Number.isInteger(inputval/2)) {
         console.log(inputval);
         input.value = '';
-    }
+    } 
 
+    console.log(input.value);
 }
 
-const ten = 10;
+
+
 
 function createHtml() {
     // create the div wrappers for the game
@@ -67,7 +73,7 @@ function createHtml() {
     gameContainer.appendChild(row);
     
 
-    for (let i = 0; i < ten; i++) {
+    for (let i = 0; i < Number(input.value); i++) {
         // create the html game inner
         const flippedContainer = document.createElement('div');
         flippedContainer.classList.add('flipped-container');
