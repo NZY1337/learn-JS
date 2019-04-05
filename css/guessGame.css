@@ -127,9 +127,10 @@ span.win {
     position: absolute;
     top:1rem;
     left:1rem;
+    z-index: 1111;
 }
 
-input[type='text'] {
+input {
     background:transparent;
     border:1px solid #fff;
     color:#fff;

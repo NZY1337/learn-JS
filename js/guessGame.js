@@ -26,41 +26,40 @@ const gameContainer = document.querySelector('#game');
 const score = document.querySelector('#score');
 const yourMove = document.querySelector('#yourMove');
 const gameStatus = document.querySelector('#gameStatus');
+const btn = document.querySelector('button');
+const input = document.querySelector("input");
+const btnRemove = document.querySelector('#btnRemove');
 let initialScore = 0;
 score.innerHTML = 0;
 let matched = false;
 let guessed = [];
 let containers = null;
 let containerInner = null;
-const input = document.querySelector("input[type='text']");
+let times;
 
-// we need this from bottom
 
-let asd = 10;
-input.value = asd;
-const ten = input.value;
+// init GAME CARDS ~.`
+btn.addEventListener('click', onlyEven);
 
-// input function
-input.addEventListener('keydown', onlyEven);
-
+    
 function onlyEven() {
-    var inputval = input.value;
+    let inptVal = input.value;
+    times = Number.isInteger(inptVal / 2);
+    if (!times) {
+       input.value = '';
+    } else {
+       createHtml(inptVal);
+    }
     
-    // Remove non numeric input
-    var numeric = inputval.replace(/[^0-9]+/,"");
-    
-    if (!Number.isInteger(inputval/2)) {
-        console.log(inputval);
-        input.value = '';
-    } 
-
-    console.log(input.value);
+    populateVars()
+    addFlippEffect();
+    setBackImgRandomly();
+    btnRemove.addEventListener('click', resetGame(input));
 }
 
 
 
-
-function createHtml() {
+function createHtml(numb) {
     // create the div wrappers for the game
     const row = document.createElement('div');
     row.classList.add('row', 'justify-content-center');
@@ -73,7 +72,7 @@ function createHtml() {
     gameContainer.appendChild(row);
     
 
-    for (let i = 0; i < Number(input.value); i++) {
+    for (let i = 0; i < numb; i++) {
         // create the html game inner
         const flippedContainer = document.createElement('div');
         flippedContainer.classList.add('flipped-container');
@@ -94,9 +93,10 @@ function createHtml() {
         flippedContainerIner.appendChild(flippedContainerBack);
         col.appendChild(flippedContainer);  
    }
-
+   
    return gameContainer.innerHTML;
 }
+
 
 function populateVars() {
     containers = document.querySelectorAll('.flipped-container');
@@ -122,6 +122,8 @@ function addTimer(index) {
         } 
     },1000);
 }
+
+
 
 // set the back Randomed Image FUNCTION
 function setBackImgRandomly() {
@@ -192,9 +194,4 @@ function removeAllBackPics() {
     }
 }
 
-
-createHtml();
-populateVars()
-addFlippEffect();
-setBackImgRandomly();
 
