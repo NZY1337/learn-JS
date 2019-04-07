@@ -33,6 +33,7 @@ getAsyncFunction();
 
 // FORUM POSTS DISPLAY
 const div = document.querySelector('#posts');
+const size = 5;
 
 // display posts
 async function getPosts() {
@@ -44,7 +45,8 @@ async function getPosts() {
             throw new Error('Network response was not ok');
         }).then(myJson => {
             
-            myJson.map(posts =>{ 
+             myJson.slice(0, size).map(posts =>{ 
+                 allPosts.push(posts);
                 let renderpost= `
                     <div class="col-lg-8">
                         <ul>
@@ -59,21 +61,6 @@ async function getPosts() {
         }).catch(err =>{
             alert('There has been a problem with your fetch operation: ', err.message);
         })
-   
 }
 
 getPosts();
-
-
-function getAllPosts(arr) {
-    const size = 6;
-    const newArr = [...arr];
-    let items = newArr.slice(0, size).map((item) =>{
-       displayPosts(item);
-    });
-}
-
-
-
-
-
