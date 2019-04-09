@@ -33,34 +33,64 @@ getAsyncFunction();
 
 // FORUM POSTS DISPLAY
 const div = document.querySelector('#posts');
-const size = 5;
+let startPostIndex = 0;
+let nextPostsPos = startPostIndex + 5;
+const next = document.querySelector('#next');
+const current = document.querySelector('#current');
+let firstPage = 1;
+let postArr = [];
+
 
 // display posts
 async function getPosts() {
-     await fetch('https://jsonplaceholder.typicode.com/posts')
+    await fetch('https://jsonplaceholder.typicode.com/posts')
         .then(res => {
             if (res.ok) {
                 return res.json();
             }
             throw new Error('Network response was not ok');
-        }).then(myJson => {
             
-             myJson.slice(0, size).map(posts =>{ 
-                 allPosts.push(posts);
-                let renderpost= `
-                    <div class="col-lg-8">
-                        <ul>
-                            <h5 class="">Title </b>${posts.title}</b></h5>
-                            <p class="bg-dark p-4 text-white body">${posts.body}</p>
-                        </ul>
-                    </div>
-                `   
-                div.innerHTML += renderpost
-            })
-
+        }).then(data => {
+           data.map(function(post){
+                postArr = [...postArr, post];
+           });
+           
         }).catch(err =>{
             alert('There has been a problem with your fetch operation: ', err.message);
         })
 }
 
-getPosts();
+
+function displaPosts() {
+   postArr.slice(startPostIndex, nextPostsPos).map((posts, index) =>{ 
+        let renderpost = 
+        `
+            <div class="col-lg-8">
+                <ul>
+                    <h5 class="">Title </b>${posts.title} ${index+= 1}</b></h5>
+                    <p class="bg-dark p-4 text-white body">${posts.body}</p>
+                </ul>
+            </div>
+        `   
+        div.innerHTML += renderpost
+    })
+    console.log(postArr);
+}
+
+(async () =>{
+    await displaPosts();
+    await getPosts();
+})();
+
+
+function prevPost(jsn) {
+    prev.addEventListener('click', function(e){
+        
+        displaPosts(posts)
+
+        startPostIndex -=5;
+        nextPostsPos -=5;
+        firstPage-=1;
+        current.innerHTML = firstPage;
+    });
+}
