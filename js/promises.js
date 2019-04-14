@@ -31,36 +31,114 @@ getAsyncFunction();
 */
 
 
-// FORUM POSTS DISPLAY
-const div = document.querySelector('#posts');
-const size = 5;
 
-// display posts
-async function getPosts() {
-     await fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => {
+
+const url = 'https://jsonplaceholder.typicode.com/posts';
+const container = document.querySelector('#wrapper');
+const next = document.querySelector('#next');
+const prev = document.querySelector('#prev');
+const pageNum = document.querySelector('#page-num');
+
+pageNum.innerHTML = 1;
+
+let secondP = 5;
+let firstP = 0  ;
+let postHolder = [];
+
+console.log(firstP);
+console.log(secondP);
+
+// init the eventListeners
+(() =>{
+    next.addEventListener('click', nextPost);
+    prev.addEventListener('click', prevPost);
+})()
+
+
+// fetching data from server
+function GetUrlClass(link){
+    const fetched = fetch(link);
+    let postHolder = [];
+    
+    fetched
+        .then((res) => {
             if (res.ok) {
                 return res.json();
             }
-            throw new Error('Network response was not ok');
-        }).then(myJson => {
-            
-             myJson.slice(0, size).map(posts =>{ 
-                 allPosts.push(posts);
-                let renderpost= `
-                    <div class="col-lg-8">
-                        <ul>
-                            <h5 class="">Title </b>${posts.title}</b></h5>
-                            <p class="bg-dark p-4 text-white body">${posts.body}</p>
-                        </ul>
-                    </div>
-                `   
-                div.innerHTML += renderpost
-            })
-
-        }).catch(err =>{
-            alert('There has been a problem with your fetch operation: ', err.message);
+        })
+        .then((data) => {
+            data.slice(firstP, secondP).forEach((item, index)=>{
+                postHolder += 
+                    `
+                        <div class="posts bg-dark m-3 p-3 text-white" id="index_${index}">
+                            <small class="text-danger">${item.id}</small>
+                            <h5>${item.title}</h5>
+                            <p>${item.body}</p>
+                        </div>
+                    `
+           });
+           container.innerHTML = postHolder;
+        })
+        .catch(err => {
+            console.log(err);
         })
 }
 
-getPosts();
+GetUrlClass(url);
+
+
+// nextPost function
+function nextPost () {
+    container.classList.add('fadeIn');
+
+    setTimeout(function() {
+        container.classList.remove('fadeIn');
+    }, 300);
+
+    if (firstP == 95 && secondP == 100) {
+        container.classList.remove('fadeIn');
+        return false;
+    }
+
+    secondP += 5;
+    pageNum.innerHTML ++;
+    firstP += 5;
+
+    GetUrlClass(url);
+}    
+        
+// prevPost function
+function prevPost(e) {
+    container.classList.add('fadeIn');
+   
+    setTimeout(function() {
+        container.classList.remove('fadeIn');
+    }, 300);
+
+    console.log(firstP);
+    console.log(secondP);
+
+    if (firstP == 0 && secondP == 5) {
+        container.classList.remove('fadeIn');
+        return false;
+    }
+
+    pageNum.innerHTML--;
+    secondP -= 5;
+    firstP -= 5;
+    GetUrlClass(url);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

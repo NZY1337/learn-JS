@@ -8,22 +8,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Learn Promises</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/responsive-table.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="css/promises.css" type="text/css">
 </head>
 <body>
 
-<div class="container">
-    <div class="row justify-content-center py-5">
-        <h1 class="text-center">Posts</h1>
-        <div id="posts"></div>
+
+
+<div class="container h-100">
+  <div class="row justify-content-center">
+    <div class="col-lg-12  my-4">
+          <h4 class="text-center">Post Generator Practice</h4>
+      <div id="wrapper" class="container" class="fadeIn"></div>
     </div>
-    
-    <div class="row">
-        <div class="col-lg-4" id="prev">prev</div>
-        <div class="col-lg-4" id="page-num"></div>
-        <div class="col-lg-4" id="next">next</div>
+  </div>
+</div>
+
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12 btn mx-auto">
+            <button type="button" class="btn btn-default w-25" id="prev">Prev</button>
+            <p class="d-inline-block px-5 text-dark">Current Page <span id="page-num">1</span></p>
+            <button type="button" id="next" class="btn btn-danger w-25">Next</button>
+        </div>
     </div>
 </div>
 
