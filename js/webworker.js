@@ -1,13 +1,3 @@
-// asadar, exercitiu:
-// 1. avem un input type file, multiple
-// 2. la change, se citesc referintele
-// 3. se trimit catre web worker
-// 4. worker-ul citeste continutul si trimite inapoi cate o imagine procesata
-// 5. app primeste imaginea si o afiseaza intr-o galerie foto
-// 6. galeria afiseaza thumbnails (you can use flexbox for the layout)
-// 7. la click pe un thumb, imaginea se afiseaza la dimensiunea originala 
-// (puteti sa impartiti ecranul in 2: o parte galerie, o parte imaginea la dimensiuni reale SAU puteti afisa imaginea la dimensiuni reale intr-un fel de "modal" - poate chiar un native dialog element)
- // select what we need
 
 const input = document.querySelector('input');
 const res = document.querySelector('#result');
@@ -74,7 +64,6 @@ function createImg(filereader, imgTitle) {
     const p = document.createElement('p');
     div.appendChild(p);
 
-
     img.classList.add('img-fluid');
     modalParent.appendChild(img);
     
@@ -95,13 +84,16 @@ function createImg(filereader, imgTitle) {
 // add img to Modal
 function addThumbnail() {
     changeImg.src = this.querySelector("img").src;
+    modalTitle.innerHTML = this.querySelector('p').innerHTML;
 }
 
 // add Title Function
 function addTitle(el, title) {
-    const x = title.split('-');
+    const x = title.split('.');
+   
     x.pop();
+    console.log(x);
     let finalT = x.join(' ');
-    el.innerHTML = title;
     el.innerHTML = finalT;
+   
 }
