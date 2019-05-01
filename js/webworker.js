@@ -12,38 +12,38 @@
 const input = document.querySelector('input');
 const res = document.querySelector('#result');
 const asd = document.querySelector('#asd');
+const btn = document.querySelector('#close');
+const modal = document.querySelector('#my-Modal');
+const changeImg = document.querySelector('.modal-body img');
+const modalTitle = document.querySelector('#exampleModalLongTitle');
+
+
 // setting our worker file
 const myWorker = new Worker('js/workers-practice.js');
-
-document.addEventListener('load', () =>{
-    alert('hello world');
-});
 
 // add event listener for input
 input.addEventListener('change', async function(e) {
     
     // create new fileReader
     const fileReader = Array.from(e.target.files);
-    console.log(typeof fileReader);
+    
     myWorker.postMessage(fileReader);
     console.log('message has been sent');
 });
 
 myWorker.addEventListener('message', async function(e){
     const reader = new FileReader();
+    
     const imagesFromWorker = e.data;
+
     for (let i in imagesFromWorker) {
+        console.log(imagesFromWorker[i]);
+        const imgTitle = imagesFromWorker[i].name;
+        
         try {
             const resFileReader = await fileReader(reader, imagesFromWorker[i]);
-            const div = document.createElement('div');
-            
-            div.classList.add('col-lg-5', 'p-3');
-            console.log(div);
-            const img = document.createElement('img');
-            img.classList.add('img-fluid');
-            img.src = resFileReader;
-            div.appendChild(img);
-            asd.appendChild(div);
+           
+            createImg(resFileReader, imgTitle);
         } catch(err) {
             console.log(err);
         }
@@ -52,7 +52,7 @@ myWorker.addEventListener('message', async function(e){
 
  // setting up the promise
  function fileReader(reader, file) {
- return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) =>{
         reader.onerror = err => reject(err);
         reader.onload = e => {
             setTimeout(() => {
@@ -61,6 +61,47 @@ myWorker.addEventListener('message', async function(e){
         }
         reader.readAsDataURL(file);
     });
-}
+}   
 
 // form reset pt a reseta totul
+
+
+// display images from FileReader 
+function createImg(filereader, imgTitle) {
+    const div = document.createElement('div');
+    const modalParent = document.createElement('div');
+    const img = document.createElement('img');
+    const p = document.createElement('p');
+    div.appendChild(p);
+
+
+    img.classList.add('img-fluid');
+    modalParent.appendChild(img);
+    
+    div.classList.add('col-lg-6', 'col-sm-6', 'col-md-6', 'p-3');
+    img.src = filereader;
+    div.appendChild(modalParent);
+    asd.appendChild(div);
+    
+    div.setAttribute('data-toggle', 'modal');
+    div.setAttribute('data-target', '#exampleModalCenter');
+    
+    // addModal
+    div.addEventListener('click', addThumbnail);
+    // add title function
+    addTitle(p, imgTitle);
+}
+
+// add img to Modal
+function addThumbnail() {
+    changeImg.src = this.querySelector("img").src;
+}
+
+// add Title Function
+function addTitle(el, title) {
+    const x = title.split('-');
+    x.pop();
+    let finalT = x.join(' ');
+    el.innerHTML = title;
+    el.innerHTML = finalT;
+}
