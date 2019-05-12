@@ -426,7 +426,7 @@ checkStr = string => {
 
 function addSum(a, b, callback) {
     const sum = a + b;
-    console.log(a + b);
+    // console.log(a + b);
     callback(sum);
 }
 
@@ -439,7 +439,7 @@ function hellWorld(sum, asd) {
             throw 'The sum is not 4';
         }
     } catch(err) {
-        console.log(err);
+        // console.log(err);
     }
 }
 
@@ -452,14 +452,14 @@ function getNum(a, b, callback) {
 }
 
 function getFinal(param1, summ) {
-    console.log(param1 + summ);
+    // console.log(param1 + summ);
 }
 
 getNum(10,20, getFinal);
 
-var myName;
-console.log(myName);
-myName = "Sunil";
+// var myName;
+// console.log(myName);
+// myName = "Sunil";
 
 
 
@@ -475,6 +475,7 @@ function calculateSum(a, b, cb) {
     },1000)
 }
 
+/*
 // synchronusJS - all 3 functions will show their res after 1 second. 
 calculateSum(5,5 , function(sum){
     console.log(sum);
@@ -487,10 +488,10 @@ calculateSum(20, 30, function(sum){
 calculateSum(30, 40, function(sum){
     console.log(sum);
 })
+*/
 
-
-// asyncJS - the code will be showen after one sec each
-calculateSum(5,5 , function(sum){
+// asyncJS - the code will be showen after one sec each - callbackHell
+/* calculateSum(5,5 , function(sum){
     console.log(sum);
 
     calculateSum(20, 30, function(sum){
@@ -498,6 +499,36 @@ calculateSum(5,5 , function(sum){
 
         calculateSum(30, 40, function(sum){
             console.log(sum);
+
+            calculateSum(50, 60, function(sum){
+                console.log(sum);
+            })
         })
     })
 })
+*/
+
+function calculateSquare(number) {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() =>{
+            if (typeof number !== 'number'){
+                reject(new Error('Argument should be a number'));
+            } else {
+                const res = number * number;
+                resolve(res);
+            }
+        },1000)
+    });
+    return promise;
+}
+
+calculateSquare(40)
+    .then(function(res){
+        console.log(res);
+        return 'hy';
+    }, function(reason){
+        console.log(reason);
+    })
+    .then(function(res){
+        console.log(res);
+    })
