@@ -424,3 +424,80 @@ checkStr = string => {
 }
 
 
+function addSum(a, b, callback) {
+    const sum = a + b;
+    console.log(a + b);
+    callback(sum);
+}
+
+function hellWorld(sum, asd) {
+    asd = 'hello'
+    try {
+        if (sum == 4) {
+            console.log('The resumt is: ' + sum + asd);
+        } else {
+            throw 'The sum is not 4';
+        }
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+addSum(1, 5, hellWorld);
+
+
+function getNum(a, b, callback) {
+    const sum = a + b;
+    callback(a, sum);
+}
+
+function getFinal(param1, summ) {
+    console.log(param1 + summ);
+}
+
+getNum(10,20, getFinal);
+
+var myName;
+console.log(myName);
+myName = "Sunil";
+
+
+
+function calculateSum(a, b, cb) {
+    const sum = a + b;
+    // if (sum != 10) {
+    //     // if the condition isnt true, the code after throw will stop to propagate
+    //     throw 'sum is not 10';
+    // }
+
+    setTimeout(function(){
+        cb(sum);
+    },1000)
+}
+
+// synchronusJS - all 3 functions will show their res after 1 second. 
+calculateSum(5,5 , function(sum){
+    console.log(sum);
+})
+
+calculateSum(20, 30, function(sum){
+    console.log(sum);
+})
+
+calculateSum(30, 40, function(sum){
+    console.log(sum);
+})
+
+
+// asyncJS - the code will be showen after one sec each
+calculateSum(5,5 , function(sum){
+    console.log(sum);
+
+    calculateSum(20, 30, function(sum){
+        console.log(sum);
+
+        calculateSum(30, 40, function(sum){
+            console.log(sum);
+        })
+    })
+})
