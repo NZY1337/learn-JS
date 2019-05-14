@@ -6,49 +6,51 @@ const btn = document.querySelector('#close');
 const modal = document.querySelector('#my-Modal');
 const changeImg = document.querySelector('.modal-body img');
 const modalTitle = document.querySelector('#exampleModalLongTitle');
+const reader = new FileReader();
 
-
-// setting our worker file
+// set our worker file
 const myWorker = new Worker('js/workers-practice.js');
 
-// add event listener for input
+// input sending data to worker;
 input.addEventListener('change', async function(e) {
     
     // create new fileReader
     const fileReader = Array.from(e.target.files);
     
+    // sent data to fileReader;
     myWorker.postMessage(fileReader);
     console.log('message has been sent');
 });
 
 
-myWorker.addEventListener('message', async function(e){
-    const reader = new FileReader();
-    
+// get data from the worker
+readDataFromWorker = async (e) => {
     const imagesFromWorker = e.data;
-
+    
     for (let i in imagesFromWorker) {
-        console.log(imagesFromWorker[i]);
         const imgTitle = imagesFromWorker[i].name;
         
         try {
             const resFileReader = await fileReader(reader, imagesFromWorker[i]);
-           
             createImg(resFileReader, imgTitle);
+
         } catch(err) {
             console.log(err);
         }
     }
-})
+}
+
+// get data from the worker
+myWorker.addEventListener('message', readDataFromWorker);
 
  // setting up the promise
  function fileReader(reader, file) {
     return new Promise((resolve, reject) =>{
-        reader.onerror = err => reject(err);
+        reader.onerror = () => reject('pula poze :))');
         reader.onload = e => {
             setTimeout(() => {
                 resolve(e.target.result);
-            });
+            }, 1000);
         }
         reader.readAsDataURL(file);
     });

@@ -524,13 +524,13 @@ function calculateSquare(number) {
 
 calculateSquare(40)
     .then(function(res){
-        console.log(res);
+        // console.log(res);
         return 'hy';
     }, function(reason){
         console.log(reason);
     })
     .then(function(res){
-        console.log(res);
+        // console.log(res);
     })
 
 
@@ -557,4 +557,48 @@ async function msg () {
     }
 }
 
-msg();
+
+// exercitiu
+barks = (animal) => {
+    return new Promise((res) => {
+        setTimeout(() => {
+            if (animal == 'dog') {
+                res(animal);
+            }
+        }, 100);
+    });
+}
+
+action = () => {
+    return new Promise(res => {
+        setTimeout(() =>{
+            res('barks');
+        },200);
+    });
+}
+
+aLot = () => {
+    return new Promise(res =>{ 
+        setTimeout(() =>{
+            res('a lot');
+        },300);
+    });
+}
+
+
+getAllPromises = async () => {
+    const [barkss, actionn, alott] = await Promise.all([barks('dog'), action(), aLot()]);
+    const p1 = await barks('dog');
+    const p2 = await action();
+    const p3 = await aLot();
+    
+    // console.log(p1);
+    // console.log(p2);
+    // console.log(p3);
+    // returns all in 1 sec;
+
+    console.log(`${p1} ${p2} ${p3}`); 
+    // --> returns all in 500ms;
+}
+getAllPromises();
+
