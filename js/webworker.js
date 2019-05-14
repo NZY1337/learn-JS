@@ -21,6 +21,7 @@ input.addEventListener('change', async function(e) {
     console.log('message has been sent');
 });
 
+
 myWorker.addEventListener('message', async function(e){
     const reader = new FileReader();
     
@@ -95,5 +96,6 @@ function addTitle(el, title) {
     console.log(x);
     let finalT = x.join(' ');
     el.innerHTML = finalT;
-   
 }
+
+

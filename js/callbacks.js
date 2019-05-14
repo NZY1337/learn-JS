@@ -532,3 +532,29 @@ calculateSquare(40)
     .then(function(res){
         console.log(res);
     })
+
+
+
+// async, await, try+catch
+// async only works with try catch if we have reject
+
+learnAsync = param => {
+    return new Promise((resolve, reject) =>{
+        if (typeof param == 'number') {
+            resolve(param);
+        } 
+
+        reject(new Error('i fucked up badly'));     
+    })
+}
+
+async function msg () {
+    try {
+        const asyncResFun = await learnAsync('s');
+        console.log(asyncResFun);
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+msg();
